@@ -1,0 +1,45 @@
+{% include "header.html" %}
+
+<main class="page-content">
+
+    <div class="page-banner" data-title="Books">
+        <div class="container">
+            <p class="section-label">Bibliography</p>
+            <h1>All Books</h1>
+            <p>Works spanning romance, literary fiction, and emotional fiction.</p>
+        </div>
+    </div>
+
+    <section class="books-section">
+        <div class="container">
+            <div class="books-grid">
+                {% for book in books %}
+                <article class="book-card" onclick="location.href='{{ url_for('book_details', book_num=book.id) }}'">
+                    <div class="book-cover-wrap">
+                        <img src="{{ book.image }}" alt="{{ book.book_title }}" class="book-cover-img"/>
+                        <div class="book-cover-overlay"><span>Explore →</span></div>
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-genre">Fiction</p>
+                        <h3 class="book-title">{{ book.book_title }}</h3>
+                        <p class="book-year">{{ book.year }} · {{ book.pages }} pages</p>
+                        <p class="book-excerpt">{{ book.subtitle }}</p>
+                        <span class="book-card-link">Explore →</span>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <div class="quote-strip">
+        <blockquote>"His stories do not ask for attention. They quietly consume it."</blockquote>
+        <cite>— Readers</cite>
+    </div>
+
+</main>
+
+{% include "footer.html" %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

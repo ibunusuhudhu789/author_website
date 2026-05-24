@@ -1,0 +1,111 @@
+{% include "header.html" %}
+
+<main class="page-content">
+    <div class="dashboard-wrap">
+
+        <!-- Header -->
+        <div class="dashboard-header">
+            <p class="section-label">Author Dashboard</p>
+            <h1 class="dashboard-title">Update Your Book</h1>
+            <p class="dashboard-sub">Edit the details below and save your changes.</p>
+        </div>
+
+        <!-- Form Card -->
+        <div class="dashboard-card">
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-error">⚠️ {{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="{{ url_for('edit', book_num=num) }}">
+                {{ form.hidden_tag() }}
+
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form.title.label(class="form-label") }}
+                        {{ form.title(class="form-control") }}
+                        {% for error in form.title.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.subtitle.label(class="form-label") }}
+                        {{ form.subtitle(class="form-control") }}
+                        {% for error in form.subtitle.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form.image.label(class="form-label") }}
+                    {{ form.image(class="form-control") }}
+                    {% for error in form.image.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.body.label(class="form-label") }}
+                    {{ form.body(class="form-control") }}
+                    {% for error in form.body.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form.year.label(class="form-label") }}
+                        {{ form.year(class="form-control") }}
+                        {% for error in form.year.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.pages.label(class="form-label") }}
+                        {{ form.pages(class="form-control") }}
+                        {% for error in form.pages.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form.isbn.label(class="form-label") }}
+                        {{ form.isbn(class="form-control") }}
+                        {% for error in form.isbn.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.publisher.label(class="form-label") }}
+                        {{ form.publisher(class="form-control") }}
+                        {% for error in form.publisher.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ form.language.label(class="form-label") }}
+                        {{ form.language(class="form-control") }}
+                        {% for error in form.language.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                    </div>
+                    <div class="form-group">
+                        {{ form.book_format.label(class="form-label") }}
+                        {{ form.book_format(class="form-control") }}
+                        {% for error in form.book_format.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:1rem; margin-top:0.5rem; flex-wrap:wrap;">
+                    <button type="submit" class="btn btn-primary btn-lg"
+                            style="flex:1; min-width:200px; justify-content:center;">
+                        ✅ Save Changes
+                    </button>
+                    <a href="{{ url_for('book_details', book_num=num) }}" class="btn btn-ghost btn-lg"
+                       style="flex:1; min-width:200px; justify-content:center;">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</main>
+
+{{ ckeditor.load() }}
+{{ ckeditor.config(name='body') }}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

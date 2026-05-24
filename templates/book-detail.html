@@ -1,0 +1,164 @@
+{% include "header.html" %}
+<main class="page-content">
+
+    <!-- Breadcrumb -->
+    <div style="background:var(--white);border-bottom:1px solid var(--border);padding:1rem 4rem;">
+        <p style="font-family:var(--font-body);font-size:0.78rem;color:var(--muted);">
+            <a href="/" style="color:var(--muted);transition:color 0.2s;"
+               onmouseover="this.style.color='var(--rose-deep)'" onmouseout="this.style.color='var(--muted)'">Home</a>
+            <span style="margin:0 0.6rem;opacity:0.4;">·</span>
+            <a href="/books" style="color:var(--muted);transition:color 0.2s;"
+               onmouseover="this.style.color='var(--rose-deep)'" onmouseout="this.style.color='var(--muted)'">Books</a>
+            <span style="margin:0 0.6rem;opacity:0.4;">·</span>
+            <span style="color:var(--rose-deep);">{{ book.book_title }}</span>
+        </p>
+    </div>
+
+    <!-- Book Detail Hero -->
+    <div class="book-detail-hero">
+
+        <!-- Cover -->
+        <div class="book-detail-cover animate-fadeup">
+            <img src="{{ book.image }}" alt="{{ book.book_title }}"/>
+        </div>
+
+        <!-- Info -->
+        <div class="book-detail-meta animate-fadeup delay-2">
+            <p class="book-detail-genre">Romance · Literary Fiction</p>
+            <h1 class="book-detail-title">{{ book.book_title }}</h1>
+            <p class="book-detail-author">By Ibunu Suhudhu</p>
+
+            {% if current_user.id == 1 %}
+            <div style="display:flex;gap:0.75rem;margin-bottom:1.5rem;">
+                <a href="{{ url_for('edit', book_num=book.id) }}" class="btn btn-ghost btn-sm">✏️ Edit</a>
+                <a href="{{ url_for('delete', book_num=book.id) }}" class="btn btn-sm"
+                   style="background:var(--blush);color:var(--rose-deep);border:1.5px solid var(--border-mid);"
+                   onclick="return confirm('Delete this book permanently?')">🗑️ Delete</a>
+            </div>
+            {% endif %}
+
+            <div class="book-rating">
+                <span class="stars">★★★★★</span>
+                <span class="rating-count">4.8 · 3,241 ratings on Goodreads</span>
+            </div>
+
+            <p class="book-detail-desc">{{ book.body|safe }}</p>
+            <br/>
+
+            <!-- Purchase Options -->
+            <p class="section-label" style="margin-top:1.5rem;">Get This Book</p>
+            <div class="book-purchase-options">
+                <button class="purchase-option primary-opt" onclick="location.href='https://amzn.in/d/04JNrfFk'">
+                    <span class="opt-icon">📱</span>
+                    <div><span class="opt-label">Digital</span><span class="opt-title">Buy eBook</span></div>
+                    <span class="opt-price">₹269</span>
+                </button>
+                <button class="purchase-option" onclick="location.href='https://amzn.in/d/0g38nLlu'">
+                    <span class="opt-icon">📚</span>
+                    <div><span class="opt-label">Hardcover</span><span class="opt-title">Buy Physical Book</span></div>
+                    <span class="opt-price">₹556</span>
+                </button>
+                <button class="purchase-option" onclick="location.href='https://amzn.in/d/01XKgUjo'">
+                    <span class="opt-icon">✍️</span>
+                    <div><span class="opt-label">Limited Edition</span><span class="opt-title">Signed Hardcover</span>
+                    </div>
+                    <span class="opt-price">₹728</span>
+                </button>
+            </div>
+
+            <!-- Book Info Grid -->
+            <div class="book-info-grid">
+                <div class="info-item"><p class="info-key">Published</p>
+                    <p class="info-val">{{ book.year }}</p></div>
+                <div class="info-item"><p class="info-key">Pages</p>
+                    <p class="info-val">{{ book.pages }}</p></div>
+                <div class="info-item"><p class="info-key">ISBN</p>
+                    <p class="info-val">{{ book.isbn }}</p></div>
+                <div class="info-item"><p class="info-key">Language</p>
+                    <p class="info-val">{{ book.language }}</p></div>
+                <div class="info-item"><p class="info-key">Publisher</p>
+                    <p class="info-val">{{ book.publisher }}</p></div>
+                <div class="info-item"><p class="info-key">Formats</p>
+                    <p class="info-val">{{ book.format }}</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <section style="background:var(--cream);">
+        <div class="container-md">
+            <p class="section-label">Reviews</p>
+            <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:300;color:var(--darker);margin-bottom:2.5rem;">
+                What Readers Are Saying</h2>
+            {%for review in reviews%}
+            {%if review.books.id == book.id%}
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;">
+                <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.75rem;">
+                    <div style="color:var(--rose-deep);font-size:0.9rem;margin-bottom:0.75rem;letter-spacing:3px;">
+                        {{review.stars}}
+                    </div>
+                    <p style="font-family:var(--font-display);font-size:1.05rem;font-style:italic;color:var(--ink);margin-bottom:1rem;font-weight:400;line-height:1.75;">
+                        {{review.reviews|safe}}</p>
+                    <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">
+                        — {{review.s.name}}</p>
+                </div>
+                {%endif%}reader
+                {%endfor%}
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<div class="dashboard-wrap">
+    <div class="dashboard-header">
+        <p class="section-label" style="justify-content:center;">
+            Leave Your Review
+        </p>
+
+        <p class="dashboard-sub">
+            Share your emotions, thoughts, and reactions after reading.
+        </p>
+    </div>
+
+    <div class="dashboard-card">
+        <form method="POST" action="{{url_for('book_details', book_num=book.id)}}">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                <label class="form-label">
+                    Your Name
+                </label>
+                {{ form.name(
+                class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    Your Rating
+                </label>
+                {{ form.star(
+                class="form-control",
+                placeholder="★★★★★" ) }}
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    Your Review
+                </label>
+                {{ form.review() }}
+            </div>
+
+            {{ form.submit(class="btn btn-primary w-100") }}
+
+        </form>
+    </div>
+</div>
+{{ ckeditor.load() }}
+{{ ckeditor.config(name=form.review.name) }}
+
+{% include "footer.html" %}
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

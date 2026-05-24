@@ -1,0 +1,130 @@
+{% include "header.html" %}
+
+<!-- ════ HERO ════ -->
+<main class="page-content">
+    <section class="hero">
+        <div class="hero-content animate-fadeup">
+            <p class="hero-eyebrow">Author · Storyteller · Voice of a Generation</p>
+            <h1>Stories That<br/><em>Outlast</em><br/>The Page</h1>
+            <p class="hero-sub">Stories filled with aching hearts, dangerous honesty, and characters who feel far too
+                real to forget.</p>
+            <div class="hero-actions">
+                <a href="/books" class="btn btn-primary btn-lg">Explore Books</a>
+                <a href="/about" class="btn btn-ghost btn-lg">About Suhudhu</a>
+            </div>
+        </div>
+        <div class="hero-image-wrap animate-fadeup delay-2">
+            <img
+                    src="{{url_for('static', filename='AFU.png')}}"
+                    alt="The Quiet Hours — Latest Novel"
+                    class="hero-book-img"
+            />
+            <div class="hero-badge">
+                Emotionally<br/>Driven<br/>Fiction
+            </div>
+        </div>
+    </section>
+
+    <!-- ════ QUOTE STRIP ════ -->
+    <div class="quote-strip">
+        <blockquote>"Between fiction and reality, I found a place where emotions could finally breathe."</blockquote>
+        <cite>— Ibunu Suhudhu</cite>
+    </div>
+
+    <!-- ════ FEATURED BOOKS ════ -->
+    <section class="books-section">
+        <div class="container">
+            <div data-animate>
+                <p class="section-label">Bibliography</p>
+                <h2>Recent Works</h2>
+                <p class="subtitle">Each book a world unto itself.</p>
+            </div>
+            <div class="books-grid">
+
+                <!-- Book 1 -->
+                {%for book in all_books%}
+                <article class="book-card" data-animate
+                         onclick="location.href='{{url_for('book_details', book_num=book.id)}}'">
+                    <div class="book-cover-wrap">
+                        <img
+                                src="{{ book.image }}"
+                                alt="{{book.title}}"
+                                class="book-cover-img"
+                        />
+                    </div>
+                    <div class="book-card-body">
+                        <p class="book-genre">Romance</p>
+                        <h3 class="book-title">{{book.book_title}}</h3>
+                        <p class="book-year">{{book.year}}</p>
+                        <p class="book-excerpt">{{book.subtitle}}</p>
+                        <span class="book-card-link">Read more →</span>
+                    </div>
+                </article>
+                {%endfor%}
+            </div>
+            <div class="text-center" style="margin-top:3rem;">
+                <a href="/books" class="btn btn-outline">View All Books</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════ ABOUT STRIP ════ -->
+    <section class="about-strip" style="padding:0;">
+        <div class="about-strip-img" data-animate>
+            <img
+                    src="{{url_for('static', filename='ibunu_photo.jpg')}}"
+                    alt="Ibunu Suhudhu"
+                    class="author-photo"
+            />
+        </div>
+        <div class="about-strip-content" style="padding:6rem 5rem;" data-animate>
+            <p class="section-label">The Author</p>
+            <h2>Ibunu Suhudhu</h2>
+            <p>Ibunu Suhudhu is a writer drawn to stories filled with longing, silence, emotions, and beautifully
+                complicated people. His work often explores the fragile spaces between love, loneliness, comfort, and
+                chaos.</p>
+            <p>Through fiction, blog posts, and personal reflections, he creates worlds where emotions are allowed to
+                exist honestly — raw, messy, intimate, and human.</p>
+            <div class="author-stats">
+                <div>
+                    <div class="stat-num">1</div>
+                    <div class="stat-label">Book Published</div>
+                </div>
+                <div>
+                    <div class="stat-num">2k+</div>
+                    <div class="stat-label">Readers</div>
+                </div>
+            </div>
+            <a href="/about" class="btn btn-primary">Read Full Bio</a>
+        </div>
+    </section>
+
+    <!-- ════ NEWSLETTER ════ -->
+    <section class="newsletter">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="container-sm" data-animate>
+            <p class="section-label" style="justify-content:center;color:rgba(255,255,255,0.5);">Stay Connected</p>
+            <h2>Letters From Suhudhu</h2>
+            <p>Occasional letters from my writing desk — stories in progress, thoughts I never published, late-night
+                emotions, and fragments of worlds that still live inside my head.</p>
+            <form id="newsletterForm" class="newsletter-form" action="/subscribers" method="post">
+                <input type="email" name="subscribers" required aria-label="Email address"/>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<!-- ════ FOOTER ════ -->
+{% include "footer.html" %}
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+{% include "header.html" %}
+
+<main class="page-content">
+
+    <div class="page-banner" data-title="About">
+        <div class="container">
+            <p class="section-label">The Author</p>
+            <h1>Ibunu Suhudhu</h1>
+            <p>Storyteller. Developer. Creator of Worlds.</p>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="about-main">
+
+                <!-- Sidebar -->
+                <aside class="about-sidebar animate-fadeup">
+                    <img
+                            src="{{ url_for('static', filename='ibunu_photo.jpg') }}"
+                            alt="Ibunu Suhudhu"
+                            class="about-portrait"
+                    />
+                    <div class="about-social" style="margin-top:1.25rem;">
+                        <a href="#" class="social-pill">Instagram</a>
+                        <a href="#" class="social-pill">Twitter</a>
+                        <a href="#" class="social-pill">Goodreads</a>
+                    </div>
+
+                    <div style="margin-top:1.5rem;padding:1.25rem 1.5rem;background:var(--blush);border-radius:var(--r-md);border-left:2px solid var(--rose-deep);">
+                        <p style="font-family:var(--font-body);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:0.6rem;font-weight:700;">
+                            Represented By</p>
+                        <p style="font-family:var(--font-display);font-size:1.05rem;font-weight:500;color:var(--darker);">
+                            Behind the Screen</p>
+                        <p style="font-family:var(--font-body);font-size:0.82rem;color:var(--muted);margin-top:0.35rem;line-height:1.65;">
+                            Creating sweet stories, immersive aesthetics, and meaningful digital experiences.</p>
+                    </div>
+
+                    <div style="margin-top:1rem;padding:1.25rem 1.5rem;background:var(--white);border:1px solid var(--border);border-radius:var(--r-md);">
+                        <p style="font-family:var(--font-body);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;font-weight:700;">
+                            Beyond Writing</p>
+                        <p style="font-family:var(--font-body);font-size:0.82rem;color:var(--ink);line-height:1.7;">
+                            Blending storytelling, design, and development into experiences that feel cinematic and
+                            alive.</p>
+                        <a href="/contact" class="btn btn-outline btn-sm" style="margin-top:1rem;display:inline-block;">Get
+                            in Touch</a>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="about-content animate-fadeup delay-2">
+
+                    <h2>The Beginning</h2>
+                    <br>
+                    <p>I didn't become a writer because I had all the answers. I became one because words were the only
+                        place where silence finally made sense.</p>
+                    <p>Stories were never just stories to me. They became a way to survive emotions I couldn't explain
+                        out loud — loneliness, longing, fear, obsession, love, grief, hope. What started as random
+                        thoughts slowly turned into worlds, characters, and confessions hidden between lines.</p>
+                    <p>I write the kind of stories that linger. The kind that ache a little. The kind that feel
+                        dangerously honest. Under the name Ibunu Suhudhu, I create stories filled with flawed people,
+                        emotional chaos, forbidden love, vulnerability, darkness, tenderness, and the strange beauty of
+                        being human.</p>
+
+                    <blockquote>"Some stories are written to entertain. Mine are written to linger — somewhere between
+                        obsession, loneliness, and the things people are too afraid to admit out loud."
+                    </blockquote>
+
+                    <h2>The Writing Life</h2>
+                    <br>
+                    <p>Writing, for me, is not a hobby. It's a second existence. Every character I create carries a
+                        piece of something real — a fear I understand, a wound I remember, or a desire I was too afraid
+                        to speak about.</p>
+                    <p>I love writing emotionally intense stories where relationships feel messy, intimate, and
+                        painfully alive. From <em>A Fate Unwritten</em> to the stories still waiting to be written,
+                        every project begins with a single feeling I can't ignore.</p>
+                    <p>I don't want readers to simply read my stories. I want them to feel trapped inside them.</p>
+
+                    <h2>Life Outside the Page</h2>
+                    <br>
+                    <p>Writing may be where my emotions live, but development is where my mind feels most alive. Beyond
+                        fiction, I spend my time building things — websites, systems, ideas, and experiences that begin
+                        as nothing more than a thought on a screen.</p>
+                    <p>As a developer, I enjoy turning concepts into something real and interactive. Whether I'm working
+                        on design, backend logic, or experimenting with new technologies, I love the process of creating
+                        something meaningful from scratch.</p>
+                    <p>In many ways, writing and development are not that different to me. One builds worlds with
+                        emotions, while the other builds them with logic. I simply happen to love both.</p>
+
+                    <div style="margin-top:3rem;padding:2.5rem;background:var(--darker);border-radius:var(--r-xl);display:flex;gap:2rem;align-items:center;flex-wrap:wrap;">
+                        <div style="flex:1;min-width:200px;">
+                            <p style="font-family:var(--font-display);font-size:1.5rem;font-style:italic;font-weight:400;color:var(--white);margin-bottom:0.5rem;">
+                                Ready to read?</p>
+                            <p style="font-family:var(--font-body);font-size:0.88rem;color:rgba(255,255,255,0.55);">
+                                Browse the complete library of works.</p>
+                        </div>
+                        <a href="/books" class="btn btn-primary">View All Books</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+{% include "footer.html" %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

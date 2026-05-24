@@ -1,0 +1,100 @@
+{% include "header.html" %}
+
+<main class="page-content">
+    <div class="container-sm">
+        <div class="dashboard-wrap">
+
+            <div class="dashboard-header animate-fadeup">
+                <p class="section-label">Welcome Back</p>
+                <h1 class="dashboard-title">You Found Your Way Back</h1>
+                <p class="dashboard-sub">Sign in and continue where your story left off.</p>
+            </div>
+
+            <div class="dashboard-card animate-fadeup delay-2">
+
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-error">⚠️ {{ message }}</div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <form method="post" action="/login" novalidate>
+
+                    <div class="form-group">
+                        <label class="form-label" for="loginEmail">Email Address</label>
+                        <input
+                                class="form-control"
+                                id="loginEmail"
+                                name="email"
+                                type="email"
+                                required
+                                autocomplete="email"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="loginPassword">Password</label>
+                        <div style="position:relative; display:flex; align-items:center;">
+                            <input
+                                    class="form-control"
+                                    id="loginPassword"
+                                    name="password"
+                                    type="password"
+                                    required
+                                    autocomplete="current-password"
+                                    style="padding-right:4rem;"
+                            />
+                            <button
+                                    type="button"
+                                    onclick="togglePwd('loginPassword',this)"
+                                    style="
+                                          position:absolute;
+                                          right:1rem;
+                                          background:none;
+                                          border:none;
+                                          cursor:pointer;
+                                          color:var(--rose-deep);
+                                          font-size:0.78rem;
+                                          font-family:var(--font-main);
+                                          font-weight:700;
+                                          outline:none;
+                                        "
+                            >
+                                Show
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-100" style="margin-top:0.8rem;">
+                        🔐 Sign In
+                    </button>
+
+                </form>
+
+                <p class="auth-link">
+                    Don’t have an account? <a href="/register">Create one free</a>
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script>
+    function togglePwd(id, btn) {
+      const inp = document.getElementById(id);
+      if (inp.type === 'text') {
+        inp.type = 'password';
+        btn.innerText = 'Show';
+      } else {
+        inp.type = 'text';
+        btn.innerText = 'Hide';
+      }
+    }
+</script>
+</body>
+</html>
