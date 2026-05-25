@@ -18,7 +18,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///readers.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
 app.secret_key = os.getenv("SECRETKEY")
 db = SQLAlchemy(app)
 ckeditor = CKEditor(app)
