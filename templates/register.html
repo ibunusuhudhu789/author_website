@@ -24,61 +24,35 @@
 
                     <div class="form-group">
                         <label class="form-label" for="regName">Your Full Name</label>
-                        <input
-                                class="form-control"
-                                id="regName"
-                                name="name"
-                                type="text"
-                                required
-                        />
+                        <input class="form-control" id="regName" name="name" type="text" required />
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="regEmail">Email Address</label>
-                        <input
-                                class="form-control"
-                                id="regEmail"
-                                name="email"
-                                type="email"
-                                required
-                        />
+                        <input class="form-control" id="regEmail" name="email" type="email" required />
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="regPassword">Choose Password</label>
                         <div style="position:relative;">
                             <input
-                                    class="form-control"
-                                    id="regPassword"
-                                    name="password"
-                                    type="password"
-                                    required
-                                    style="padding-right:4rem;"
+                                class="form-control"
+                                id="regPassword"
+                                name="password"
+                                type="password"
+                                required
+                                style="padding-right:4rem;"
                             />
                             <button
-                                    type="button"
-                                    onclick="togglePwd('regPassword',this)"
-                                    style="
-                                        position:absolute;
-                                        right:1rem;
-                                        top:50%;
-                                        transform:translateY(-50%);
-                                        background:none;
-                                        border:none;
-                                        cursor:pointer;
-                                        color:var(--rose-deep);
-                                        font-size:0.78rem;
-                                        font-family:var(--font-main);
-                                        font-weight:700;
-                                        outline:none;
-                                    "
+                                type="button"
+                                onclick="togglePwd('regPassword',this)"
+                                style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--rose-deep);font-size:0.78rem;font-family:var(--font-main);font-weight:700;outline:none;"
                             >
                                 Show
                             </button>
                         </div>
                     </div>
 
-                    <!-- reCAPTCHA as its own group -->
                     <div class="form-group" style="display:flex; justify-content:center;">
                         <div class="g-recaptcha" data-sitekey="{{ sitekey }}"></div>
                     </div>
@@ -86,36 +60,29 @@
                     <button type="submit" class="btn btn-primary btn-lg w-100" style="margin-top:0.8rem;">
                         ✨ Create Account
                     </button>
-            </div>
-        </div>
 
-        <button type="submit" class="btn btn-primary btn-lg w-100" style="margin-top:0.8rem;">
-            ✨ Create Account
-        </button>
+                </form>  <!-- ✅ form closes inside dashboard-card -->
 
-        </form>
+                <p class="auth-link">
+                    Already have an account? <a href="/login">Sign in instead</a>
+                </p>
 
-        <p class="auth-link">
-            Already have an account? <a href="/login">Sign in instead</a>
-        </p>
-
-    </div>
-
-    </div>
-    </div>
+            </div>  <!-- ✅ dashboard-card -->
+        </div>  <!-- ✅ dashboard-wrap -->
+    </div>  <!-- ✅ container-sm -->
 </main>
 
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script>
     function togglePwd(id, btn) {
-      const inp = document.getElementById(id);
-      if (inp.type === 'text') {
-        inp.type = 'password';
-        btn.innerText = 'Show';
-      } else {
-        inp.type = 'text';
-        btn.innerText = 'Hide';
-      }
+        const inp = document.getElementById(id);
+        if (inp.type === 'text') {
+            inp.type = 'password';
+            btn.innerText = 'Show';
+        } else {
+            inp.type = 'text';
+            btn.innerText = 'Hide';
+        }
     }
 </script>
 </body>
