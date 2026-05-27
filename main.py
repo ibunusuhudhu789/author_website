@@ -126,7 +126,6 @@ def book_details(book_num):
     selected_book = db.session.get(Books, book_num)
     all_reviews = ReviewsTable.query.all()
     if request.method == "POST":
-        name = form.name.data
         review = form.review.data
         rating = form.star.data
         new_review = ReviewsTable(review=review, stars=rating, reader_id=current_user.id, book_id=book_num)

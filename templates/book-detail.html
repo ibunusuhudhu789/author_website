@@ -90,19 +90,19 @@
             <p class="section-label">Reviews</p>
             <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:300;color:var(--darker);margin-bottom:2.5rem;">
                 What Readers Are Saying</h2>
-            {%for review in reviews%}
-            {%if review.books.id == book.id%}
             <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;">
+            {%for review in reviews%}
+            {%if review.book_id == book.id%}
                 <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.75rem;">
                     <div style="color:var(--rose-deep);font-size:0.9rem;margin-bottom:0.75rem;letter-spacing:3px;">
                         {{review.stars}}
                     </div>
                     <p style="font-family:var(--font-display);font-size:1.05rem;font-style:italic;color:var(--ink);margin-bottom:1rem;font-weight:400;line-height:1.75;">
-                        {{review.reviews|safe}}</p>
+                        {{review.review|safe}}</p>
                     <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">
                         — {{review.name}}</p>
                 </div>
-                {%endif%}reader
+                {%endif%}
                 {%endfor%}
             </div>
         </div>
