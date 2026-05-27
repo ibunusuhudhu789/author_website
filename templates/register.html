@@ -46,7 +46,7 @@
 
                     <div class="form-group">
                         <label class="form-label" for="regPassword">Choose Password</label>
-                        <div style="position:relative; display:flex; align-items:center;">
+                        <div style="position:relative;">
                             <input
                                     class="form-control"
                                     id="regPassword"
@@ -55,42 +55,53 @@
                                     required
                                     style="padding-right:4rem;"
                             />
-                        </div>
-                        <div class="g-recaptcha" data-sitekey="{{ sitekey }}"></div>
                             <button
                                     type="button"
                                     onclick="togglePwd('regPassword',this)"
                                     style="
-                                          position:absolute;
-                                          right:1rem;
-                                          background:none;
-                                          border:none;
-                                          cursor:pointer;
-                                          color:var(--rose-deep);
-                                          font-size:0.78rem;
-                                          font-family:var(--font-main);
-                                          font-weight:700;
-                                          outline:none;
-                                        "
+                                        position:absolute;
+                                        right:1rem;
+                                        top:50%;
+                                        transform:translateY(-50%);
+                                        background:none;
+                                        border:none;
+                                        cursor:pointer;
+                                        color:var(--rose-deep);
+                                        font-size:0.78rem;
+                                        font-family:var(--font-main);
+                                        font-weight:700;
+                                        outline:none;
+                                    "
                             >
                                 Show
                             </button>
                         </div>
                     </div>
 
+                    <!-- reCAPTCHA as its own group -->
+                    <div class="form-group" style="display:flex; justify-content:center;">
+                        <div class="g-recaptcha" data-sitekey="{{ sitekey }}"></div>
+                    </div>
+
                     <button type="submit" class="btn btn-primary btn-lg w-100" style="margin-top:0.8rem;">
                         ✨ Create Account
                     </button>
-
-                </form>
-
-                <p class="auth-link">
-                    Already have an account? <a href="/login">Sign in instead</a>
-                </p>
-
             </div>
-
         </div>
+
+        <button type="submit" class="btn btn-primary btn-lg w-100" style="margin-top:0.8rem;">
+            ✨ Create Account
+        </button>
+
+        </form>
+
+        <p class="auth-link">
+            Already have an account? <a href="/login">Sign in instead</a>
+        </p>
+
+    </div>
+
+    </div>
     </div>
 </main>
 

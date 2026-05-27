@@ -836,3 +836,17 @@ padding:
     right: calc(50% - 90px - 26px);
   }
 }
+
+.g-recaptcha {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+@media (max-width: 400px) {
+    .g-recaptcha {
+        transform: scale(0.85);
+        transform-origin: center;
+    }
+}
