@@ -197,7 +197,7 @@ def delete(book_num):
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        response = request.form.get("r-recaptcha-response")
+        response = request.form.get("g-recaptcha-response")
         url = "https://www.google.com/recaptcha/api/siteverify"
         payload = {
             'secret': recaptcha_secret_key,
