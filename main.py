@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import Flask, render_template, request, url_for, flash, abort
+from flask import Flask, render_template, request, url_for, flash, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -18,8 +18,10 @@ load_dotenv()
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///C:\\users\\ibunu\\PycharmProjects\\suhudhu_author_website\\instance\\readers.db"
 app.secret_key = os.getenv("SECRETKEY")
+recaptcha_site_key = os.getenv("RECAPTCHASITEKEY")
+recaptcha_secret_key = os.getenv("RECAPTCHASECRETKEY")
 db = SQLAlchemy(app)
 ckeditor = CKEditor(app)
 
@@ -195,16 +197,26 @@ def delete(book_num):
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        name = request.form["name"]
-        email = request.form["email"]
-        password = request.form["password"]
-        hashed_password = generate_password_hash(password, "pbkdf2:sha256", 30)
-        new_user = Users(name=name, email=email, password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-        login_user(new_user)
-        return redirect(url_for("home"))
-    return render_template("register.html")
+        response = request.form.get("r-recaptcha-response")
+        url = "https://www.google.com/recaptcha/api/siteverify"
+        payload = {
+            'secret': recaptcha_secret_key,
+            'response': response,
+            'remoteip': request.remote_addr}
+        result = requests.post(url, data=payload).json()
+        if result.get('success'):
+            name = request.form["name"]
+            email = request.form["email"]
+            password = request.form["password"]
+            hashed_password = generate_password_hash(password, "pbkdf2:sha256", 30)
+            new_user = Users(name=name, email=email, password=hashed_password)
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(new_user)
+            return redirect(url_for("home"))
+        else:
+            return jsonify({'message': 'reCAPTCHA verification failed.'}), 400
+    return render_template("register.html", sitekey=recaptcha_site_key)
 
 
 @app.route("/login", methods=["GET", "POST"])
