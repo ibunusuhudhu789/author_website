@@ -18,7 +18,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///C:\\Users\\ibunu\\PycharmProjects\\suhudhu_author_website\\instance\\readers.db"
 app.secret_key = os.getenv("SECRETKEY")
 recaptcha_site_key = os.getenv("RECAPTCHASITEKEY")
 recaptcha_secret_key = os.getenv("RECAPTCHASECRETKEY")
@@ -138,8 +138,8 @@ def book_details(book_num):
 
 
 @app.route("/add", methods=["GET", "POST"])
-@admins_only
 @login_required
+@admins_only
 def add():
     form = BookForm()
     if request.method == "POST":
@@ -238,25 +238,28 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/subscribers", methods=["GET", "POST"])
+@app.route("/subscribers", methods=["POST"])
 def subscribers():
     email = request.form["subscribers"]
+    print(email)
     params = {
         "email": email
     }
 
     headers = {
-        "Authorization": os.getenv("EMAILKEY"),
+        "Authorization": os.getenv("APIKEY"),
         "Content-Type": "application/json"
     }
     try:
         response = requests.post("https://connect.mailerlite.com/api/subscribers", json=params, headers=headers)
+        response.raise_for_status()
     except Exception as e:
         print(e)
         flash("There is the problem in our server side. Sorry for the problem.")
+        return redirect(url_for('home'))
     else:
         flash("You're subscribed to the newsletter!!!")
-        return redirect(url_for("home"))
+        return redirect(url_for('home'))
 
 
 @app.route("/logout")

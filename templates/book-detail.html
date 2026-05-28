@@ -48,28 +48,27 @@
             <!-- Purchase Options -->
             <p class="section-label" style="margin-top:1.5rem;">Get This Book</p>
             <div class="book-purchase-options">
-                <button class="purchase-option primary-opt" onclick="location.href='https://amzn.in/d/04JNrfFk'">
+                <button class="purchase-option primary-opt" onclick="window.open('https://amzn.in/d/04JNrfFk', '_blank')">
                     <span class="opt-icon">📱</span>
                     <div><span class="opt-label">Digital</span><span class="opt-title">Buy eBook</span></div>
                     <span class="opt-price">₹269</span>
                 </button>
-                <button class="purchase-option" onclick="location.href='https://amzn.in/d/0g38nLlu'">
+                <button class="purchase-option" onclick="window.open('https://amzn.in/d/0g38nLlu', '_blank')">
                     <span class="opt-icon">📚</span>
                     <div><span class="opt-label">Physical Book</span><span class="opt-title">Buy Physical Book</span></div>
                     <span class="opt-price">₹556</span>
                 </button>
-                <button class="purchase-option" onclick="location.href='https://amzn.in/d/01XKgUjo'">
+                <button class="purchase-option" onclick="window.open('https://amzn.in/d/01XKgUjo', '_blank')">
                     <span class="opt-icon">✍️</span>
                     <div><span class="opt-label">Hardcover</span><span class="opt-title">Hardcover</span>
                     </div>
                     <span class="opt-price">₹728</span>
                 </button>
-                <button class="purchase-option" onclick="location.href='https://wa.me/918925694384?text=Hi!%20I%20would%20like%20to%20order%20a%20signed%20copy%20of%20your%20book.
-'">
+                <button class="purchase-option" onclick="window.open('https://wa.me/918925694384?text=Hi!%20I%20would%20like%20to%20order%20a%20signed%20copy%20of%20your%20book', '_blank')">
                     <span class="opt-icon">✍️</span>
                     <div><span class="opt-label">Limited Edition</span><span class="opt-title">Signed copy</span>
                     </div>
-                    <span class="opt-price">₹728</span>
+                    <span class="opt-price">₹620</span>
                 </button>
             </div>
 
@@ -107,7 +106,7 @@
                     <p style="font-family:var(--font-display);font-size:1.05rem;font-style:italic;color:var(--ink);margin-bottom:1rem;font-weight:400;line-height:1.75;">
                         {{review.review|safe}}</p>
                     <p style="font-family:var(--font-body);font-size:0.72rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;">
-                        — {{review.name}}</p>
+                        — {{review.readers.name}}</p>
                 </div>
                 {%endif%}
                 {%endfor%}
