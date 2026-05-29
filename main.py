@@ -18,7 +18,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE")
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///C:\\Users\\ibunu\\PycharmProjects\\suhudhu_author_website\\instance\\readers.db"
 app.secret_key = os.getenv("SECRETKEY")
 recaptcha_site_key = os.getenv("RECAPTCHASITEKEY")
 recaptcha_secret_key = os.getenv("RECAPTCHASECRETKEY")

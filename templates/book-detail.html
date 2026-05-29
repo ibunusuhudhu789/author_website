@@ -116,6 +116,7 @@
 
 </main>
 
+{%if not current_user.is_anonymous%}
 <div class="dashboard-wrap">
     <div class="dashboard-header">
         <p class="section-label" style="justify-content:center;">
@@ -162,6 +163,7 @@
 </div>
 {{ ckeditor.load() }}
 {{ ckeditor.config(name=form.review.name) }}
+{%endif%}
 
 {% include "footer.html" %}
 
